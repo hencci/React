@@ -1,5 +1,7 @@
 // Next comes the state. In a class-based component, the state gets initialized as a part of the constructor.
 
+// Whenever a method is declared, you must bind the this of the method to that of the class in order to work with it
+
 import { Component } from "react";
 
 class ClassInput extends Component {
@@ -10,20 +12,47 @@ class ClassInput extends Component {
       todos: [],
       inputVal: "",
     };
+
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  // Some more code goes here
+
+  handleInputChange(e) {
+    this.setState((state) => ({
+      ...state,
+      inputVal: e.target.value,
+    }));
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState((state) => ({
+      todos: state.todos.concat(state.inputVal),
+      inputVal: "",
+    }));
+  }
 
   render() {
     return (
       <section>
         <h3>{this.props.name}</h3>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="task-entry">Enter a task: </label>
-          <input type="text" id="task-entry" name="task-entry" />
+          <input
+            type="text"
+            id="task-entry"
+            name="task-entry"
+            value={this.state.inputVal}
+            onChange={this.handleInputChange}
+          />
           <button type="submit">Submit</button>
         </form>
         <h4>All the tasks!</h4>
-        <ul></ul>
+        <ul>
+          {this.state.todos.map((todo) => (
+            <li key={todo}>{todo}</li>
+          ))}
+        </ul>
       </section>
     );
   }
