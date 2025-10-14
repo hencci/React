@@ -12,6 +12,11 @@ RenderName.propTypes = {
   name: PropTypes.string,
 };
 
+RenderName.defaultProps = {
+  name: "Henry",
+  //  With the help of the defaultProps property we are defining a default value for the name prop. This way, if the RenderName component is called without passing in the name prop, it will default to “Henry”.
+};
+
 export default RenderName;
 
 // In this example, the component RenderName expects to receive a prop called name which is a string. If this prop is not a string, a warning will be displayed.
