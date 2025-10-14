@@ -13,3 +13,5 @@ RenderName.propTypes = {
 };
 
 export default RenderName;
+
+// In this example, the component RenderName expects to receive a prop called name which is a string. If this prop is not a string, a warning will be displayed.
