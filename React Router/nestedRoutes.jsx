@@ -53,19 +53,13 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "profile",
+    path: "profile/:name",
     element: <Profile />,
-    children: [
-      { index: true, element: <DefaultProfile /> },
-      { path: "spinach", element: <Spinach /> },
-      { path: "popeye", element: <Popeye /> },
-    ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>,
-  ss
+  </StrictMode>
 );
